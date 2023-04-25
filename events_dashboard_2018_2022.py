@@ -90,7 +90,7 @@ def top_nationalities_by_year(data):
 
 st.set_page_config(page_title="ADSC Events Dashboard", layout="wide")
 
-st.title("ADSC Events Dashboard")
+st.title("ADSC Community Events Dashboard")
 
 # Add a year filter to the dashboard
 # year = st.sidebar.selectbox('Select a year', data['year'].unique())
