@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Load data from CSV file
-data = pd.read_csv(r"C:\Users\pc\OneDrive\ADSC\codes\ADSC_Events\preprocessed_events_Yasser\2018-2022__modified_preprocessed_data.csv")
+data = pd.read_csv(r"2018-2022__modified_preprocessed_data.csv")
 
 def total_participants_by_year(data):
     yearly_data = data.groupby('year').size().reset_index(name='count')
