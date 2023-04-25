@@ -121,8 +121,8 @@ top_cities_by_year(data)
 st.header("8. Top 10 nationalities per year")
 top_nationalities_by_year(data)
 
-# st.header("9. Top 10 events per year")
-# top_events_by_year(data)
+st.header("9. Top 10 events per year")
+top_events_by_year(data)
 
 # st.header("10. Map of participants per city, nationality, and event from 2018 to 2022")
 # participants_map(data)
