@@ -66,15 +66,17 @@ def top_events_by_year(data):
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide', title='Top 10 events per year')
     st.plotly_chart(fig)
 
-def top_cities_by_year(data):
-    cities_data = data.groupby(['year', 'city']).size().reset_index(name='count')
-    cities_data = cities_data.sort_values(by=['year', 'count'], ascending=[True, False])
-    top_cities_data = pd.DataFrame(columns=['year', 'city', 'count'])
-    for year in data['year'].unique():
-        top_cities_data = top_cities_data.append(cities_data[cities_data['year'] == year].head(10))
-    fig = px.bar(top_cities_data, x='city', y='count', color='year', barmode='group')
+def top_cities_by_year(data, year):
+    top_cities_data = pd.DataFrame(columns=['city', 'count'])
+    for y in data['year'].unique():
+        cities_data = data[data['year'] == y].groupby('city').size().reset_index(name='count')
+        cities_data = cities_data.sort_values(by='count', ascending=False).head(10)
+        cities_data['year'] = y
+        top_cities_data = top_cities_data.append(cities_data)
+    top_cities_data = top_cities_data[top_cities_data['year'] == year]
+    fig = px.bar(top_cities_data, x='city', y='count', text='count')
     fig.update_traces(texttemplate='%{text:.2s}', textposition='outside')
-    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide', title='Top 10 cities per year')
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide', title=f'Top 10 cities in {year}')
     st.plotly_chart(fig)
 
 def top_nationalities_by_year(data):
