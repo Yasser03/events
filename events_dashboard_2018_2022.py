@@ -67,6 +67,9 @@ def top_events_by_year(data):
     st.plotly_chart(fig)
 
 def top_cities_by_year(data, year):
+    if 'year' not in data.columns:
+        st.error("The 'year' column does not exist in the dataset.")
+        return
     top_cities_data = pd.DataFrame(columns=['city', 'count'])
     for y in data['year'].unique():
         cities_data = data[data['year'] == y].groupby('city').size().reset_index(name='count')
